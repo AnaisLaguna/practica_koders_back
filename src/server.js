@@ -1,7 +1,9 @@
 const express = require('express');
 const koderRouter = require("./routers/koders.router");
 
+
 const app = express();
+
 //middleware
 app.use(express.json());
 
@@ -12,6 +14,8 @@ app.get("/", (request, response) =>{
         message: "koders APIv1",
     });
 });
+
+
 
 module.exports = app;
 
