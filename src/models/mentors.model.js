@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-
-const modelName = 'koder'
+const modelNameMentors = 'Mentor';
 
 const schema = new mongoose.Schema({
     firstName: {
@@ -36,6 +35,6 @@ const schema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
- })
+ });
 
-module.exports = mongoose.model(modelName, schema)
+module.exports = mongoose.model(modelNameMentors, schema);
