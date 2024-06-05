@@ -35,5 +35,9 @@ async function updateById(id, newKoderData){
 
 
 module.exports = {
-    create, getAll, getById, deleteById, updateById
+    create, 
+    getAll, 
+    getById, 
+    deleteById, 
+    updateById
 }
