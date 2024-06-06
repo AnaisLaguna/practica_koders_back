@@ -1,6 +1,7 @@
 const Koders = require("../models/koders.model")
 const createError = require("http-errors")
 
+
 async function create (koderData) {
     const koderFound = await Koders.findOne({ email: koderData.email })
     if(koderFound){
@@ -15,12 +16,12 @@ async function create (koderData) {
 }
 
 async function getAll(){
-    const allKoders = await Koders.find()
-    return allKoders
+    const allKoders = await Koders.find().populate("generation");
+    return allKoders;
 }
 
 async function getById(id){
-    const koder = await Koder.findById(id)
+    const koder = await Koder.findById(id).populate("generation");
     return koder
 }
 async function deleteById(id){
