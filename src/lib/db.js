@@ -5,12 +5,12 @@ const {
     DB_PASSWORD,
     DB_HOST,
     DB_NAME
-} = process.env
+} = process.env;
 
 const URI = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 
 function connect (){
-   return mongoose.connect(URI)
-}
+   return mongoose.connect(URI);
+};
 
-module.exports = { connect }
+module.exports = { connect };

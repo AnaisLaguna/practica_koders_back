@@ -1,9 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose') //se encarga de crear y mostrar objetos en base de datos 
 
-const modelName = 'koder'
 
+const modelName = 'koders'
 const schema = new mongoose.Schema({
-    firstName: {
+     //reglas del atributo
+   firstName: {
        type: String,
        required: true,
        minLength: 2,
@@ -17,7 +18,7 @@ const schema = new mongoose.Schema({
     email: {
        type: String,
        required: true,
-       match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+       match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/ //patron a seguir para el email
     },
     password: {
         type: String,
@@ -27,15 +28,15 @@ const schema = new mongoose.Schema({
        type: Date,
        require: true
     },
-    // generation: {
-    //    type: Number,
-    //    min: 1,
-    //    max: 100
-    // },
-    createdAt: {
+     generation: {
+      type: mongoose.Schema.Types.ObjectId, // toma id del documento de la base de datos de generacion 
+      ref: "generations", // hace referencia al modelo
+     },
+    
+    createdAt: { // fecha de creacion de documento
         type: Date,
         default: Date.now
-    }
- })
+    },
+ });
 
-module.exports = mongoose.model(modelName, schema)
+module.exports = mongoose.model(modelName, schema);

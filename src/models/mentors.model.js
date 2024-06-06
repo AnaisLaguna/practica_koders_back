@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const modelNameMentors = 'Mentor';
 
 const schema = new mongoose.Schema({
-    firstName: {
+    firstName: { //reglas de ese atributo
        type: String,
        required: true,
        minLength: 2,
@@ -16,7 +16,7 @@ const schema = new mongoose.Schema({
     email: {
        type: String,
        required: true,
-       match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+       match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/ //patron a seguir
     },
     password: {
         type: String,
@@ -31,10 +31,10 @@ const schema = new mongoose.Schema({
     //    min: 1,
     //    max: 100
     // },
-    createdAt: {
+    createdAt: { // fecha de creacion de documento
         type: Date,
         default: Date.now
-    }
+    },
  });
 
 module.exports = mongoose.model(modelNameMentors, schema);

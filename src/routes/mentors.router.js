@@ -1,10 +1,10 @@
 const express = require("express")
 const mentorUseCase = require("../usercases/mentors.usercase")
-const router = express.Router()
+const routerm = express.Router();
 
-// GET /koders
+// GET /mentor
 
-router.get("/", async (request, response) => {
+routerm.get("/", async (request, response) => {
     try{
         const mentor = await mentorUseCase.getAll()
         response.json({
@@ -14,7 +14,7 @@ router.get("/", async (request, response) => {
             },
         })
     } catch (error){
-        response.status(error.status || 500)
+        response.status(error.status || 500);
         response.json({
             succes: false,
             error: error.message,
@@ -23,80 +23,80 @@ router.get("/", async (request, response) => {
 
 })
 
-// POST /koder
+// POST /mentor
 
-router.post("/", async (request, response) =>{
+routerm.post("/", async (request, response) =>{
     try{
-        const koderCreated = await mentorUseCase.create(request.body)
+        const mentorCreate = await mentorUseCase.createMentor(request.body);
         response.json({
             success: true,
             data: {
-                mentor: mentorCreated
+                mentor: mentorCreate
             }
         })
     }catch  (error){
-        response.status(error.status || 500)
+        response.status(error.status || 500);
         response.json({
             succes: false,
             error: error.message,
-        })
+        });
     }
-})
+});
 
-// GET /koders/:id
+// GET /mentor/:id
 
-router.get("/:id", async (request, response) =>{
+routerm.get("/:id", async (request, response) =>{
     try{
-    const id = request.params.id
-    const mentor = await mentorUseCase.getById(id)
+    const id = request.params.id;
+    const mentor = await mentorUseCase.getByIdMentor(id);
     response.json({
         succes: true,
         data: {mentor}
     })
     }catch  (error){
-        response.status(error.status || 500)
+        response.status(error.status || 500);
         response.json({
             succes: false,
             error: error.message,
-        })
+        });
     }
-})
+});
 
-// Delete By Id /koders/:id
-router.delete("/:id", async (request, response) =>{
+// Delete By Id /mentor/:id
+routerm.delete("/:id", async (request, response) =>{
     try{
-        const { id } = request.params
-        const mentorDeleted = await mentorUseCase.deleteById(id)
+        const { id } = request.params;
+        const mentorDeleted = await mentorUseCase.deleteByIdMentor(id);
 
         response.json({
             succes: true,
             data: { mentor: mentorDeleted},
         })
     }catch(error){
-        response.status(error.status || 500)
+        response.status(error.status || 500);
         response.json({
             succes: false,
             error: error.message,
-        })
+        });
     }
-})
+});
 
-// PATCH /koders/:id
-router.patch("/:id", async (request, response)=>{
+// PATCH /mentor/:id
+routerm.patch("/:id", async (request, response)=>{
     try{
         const {id} = request.params
-        const mentorUpdated = await mentorUseCase.updateById(id, request.body)
+        const mentorUpdated = await mentorUseCase.updateByIdMentor(id, request.body)
         response.json({
             success: true,
-            data: {koder: mentorUpdated}
+            data: {mentor: mentorUpdated}
         })
     }catch(error){
-        response.status(error.status || 500)
+        response.status(error.status || 500);
         response.json({
             succes: false,
             error: error.message,
-        })
+        });
     }
 
-})
-module.exports = router
+});
+module.exports = routerm;
