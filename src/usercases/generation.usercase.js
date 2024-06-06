@@ -1,4 +1,4 @@
-const Generations = require('../models/generations.model');
+const Generations = require('../models/generation.model');
 
 async function createGeneration(generationData){
     const newGeneration = await Generations.create(generationData);
