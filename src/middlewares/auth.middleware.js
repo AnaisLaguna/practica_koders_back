@@ -12,12 +12,12 @@ async function auth(request, response, next){
         throw createError(401, "JWT is required"); // si no esta el token lo exige 
         }
 //verificacion de token
-        const payload = jwt.verify(token);
+    const payload = jwt.verify(token);
 
-        const user = await kodersUsercase.getById(payload.id);//el usuario es obtenido es por el id y se asigna al token      
-      request.user = user;//nos permite la autentificacion o el acceso al usuario
+    const user = await kodersUsercase.getById(payload.id);//el usuario es obtenido es por el id y se asigna al token      
+    request.user = user;//nos permite la autentificacion o el acceso al usuario
       
-      next();;  
+    next();  
     } catch (error) {
         response.status(401);
         response.json({
